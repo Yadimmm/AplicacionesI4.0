@@ -6,7 +6,7 @@ _id:Types.ObjectId;
 username:string;
 password:string;
 role:string;
-email:string; //Tres puntos a implementar estatus y fechas
+email:string;
 status:boolean;
 createDate:Date;
 deleteDate:Date;

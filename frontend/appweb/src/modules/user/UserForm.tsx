@@ -1,48 +1,54 @@
 import React from 'react';
-import { Form, Input } from 'antd';
+import { Form, Input, Button } from 'antd';
 
-const App: React.FC = () => (
-  <>
-    <Form
-      name="layout-multiple-horizontal"
-      layout="horizontal"
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 20 }}
-    >
-      <Form.Item label="horizontal" name="horizontal" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item
+export default function UserForm() {
+  const [form] = Form.useForm();
+
+  const handleSubmit = (values: unknown) => {
+    console.log('Datos del formulario:', values);
+  };
+
+  return (
+    <div style={{ maxWidth: 400, margin: 'auto', padding: '2rem' }}>
+      <h2>Vite + React</h2>
+      <p style={{ color: '#888' }}>Hello world!</p>
+
+      <Form
+        form={form}
+        name="userForm"
         layout="vertical"
-        label="vertical"
-        name="vertical"
-        rules={[{ required: true }]}
-        labelCol={{ span: 24 }}
-        wrapperCol={{ span: 24 }}
+        onFinish={handleSubmit}
       >
-        <Input />
-      </Form.Item>
-    </Form>
-    <br />
-    <Form
-      name="layout-multiple-vertical"
-      layout="vertical"
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 20 }}
-    >
-      <Form.Item label="vertical" name="vertical" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item
-        layout="horizontal"
-        label="horizontal"
-        name="horizontal"
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-    </Form>
-  </>
-);
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[{ required: true, message: 'Por favor ingresa tu nombre de usuario' }]}
+        >
+          <Input />
+        </Form.Item>
 
-export default App;
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Por favor ingresa tu contraseña' }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, type: 'email', message: 'Correo no válido' }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Enviar
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
+  );
+}
